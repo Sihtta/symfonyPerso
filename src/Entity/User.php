@@ -6,7 +6,10 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -17,16 +20,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(min : 2, max : 180)]
+    #[Assert\Email()]
     private ?string $email = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min : 2, max : 50)]
     private ?string $fullName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(min : 2, max : 50)]
     private ?string $pseudo = null;
 
     #[ORM\Column]
     private array $roles = [];
+
+    #[Assert\NotBlank()]
+    private ?string $clearPassword = null;
 
     /**
      * @var string The hashed password
@@ -35,7 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct() {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -94,6 +110,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of plainPassword
+     */ 
+    public function getClearPassword()
+    {
+        return $this->clearPassword;
+    }
+
+    /**
+     * Set the value of plainPassword
+     *
+     * @return  self
+     */ 
+    public function setClearPassword($clearPassword)
+    {
+        $this->clearPassword = $clearPassword;
 
         return $this;
     }
