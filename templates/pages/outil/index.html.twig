@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SymRecipe - Mes outils
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		{% if not outils.items is same as([]) %}
+			<h1>Mes outils</h1>
+
+			<a href="{{ path('outil.new') }}" class="btn btn-primary">
+				Créer un outil
+			</a>
+
+			{# Affichage des messages flash de succès #}
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success mt-4">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+			<div class="count mt-4">
+				<h4>
+					Il y a
+					{{ outils.getTotalItemCount }}
+					outils
+				</h4>
+			</div>
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Numéro</font>
+							</font>
+						</th>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Nom</font>
+							</font>
+						</th>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Référence</font>
+							</font>
+						</th>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Date de création</font>
+							</font>
+						</th>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Edition</font>
+							</font>
+						</th>
+						<th scope="col">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">Suppression</font>
+							</font>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for outil in outils %}
+						<tr class="table-primary">
+							<th scope="row">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">{{ outil.id }}</font>
+								</font>
+							</th>
+							<td>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">{{ outil.name }}</font>
+								</font>
+							</td>
+							<td>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">{{ outil.reference }}</font>
+								</font>
+							</td>
+							<td>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">{{ outil.createdAt|date('d/m/Y')}}</font>
+								</font>
+							</td>
+							<td>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">
+										<a href="{{ path('outil.edit', { id: outil.id})}}" class="btn btn-info">Modifier</a>
+									</font>
+								</font>
+							</td>
+							<td>
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">
+										<a href="{{ path('outil.delete', { id: outil.id})}}" class="btn btn-warning">Supprimer</a>
+									</font>
+								</font>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<div class="navigation d-flex justify-content-center mt-4">
+				{{ knp_pagination_render(outils) }}
+			</div>
+		{% else %}
+			<h4>Il n'y a pas d'outils</h4>
+		{% endif %}
+	</div>
+{% endblock %}
