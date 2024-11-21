@@ -7,8 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\DataFixtures\\AppFixtures' => $baseDir . '/src/DataFixtures/AppFixtures.php',
+    'App\\EntityListener\\UserListener' => $baseDir . '/src/EntityListener/UserListener.php',
+    'App\\Entity\\Category' => $baseDir . '/src/Entity/Category.php',
+    'App\\Entity\\Like' => $baseDir . '/src/Entity/Like.php',
     'App\\Entity\\User' => $baseDir . '/src/Entity/User.php',
     'App\\Kernel' => $baseDir . '/src/Kernel.php',
+    'App\\Repository\\CategoryRepository' => $baseDir . '/src/Repository/CategoryRepository.php',
+    'App\\Repository\\LikeRepository' => $baseDir . '/src/Repository/LikeRepository.php',
     'App\\Repository\\UserRepository' => $baseDir . '/src/Repository/UserRepository.php',
     'Collator' => $vendorDir . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',

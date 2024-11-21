@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\LikeRepository;
-use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LikeRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: LikeRepository::class)]
 #[ORM\Table(name: '`like`')]
 #[UniqueEntity(
-    fields: ['user', 'creat'],
+    fields: ['user', 'creation'],
     message: 'Cet utilisateur à déjà liké cette recette.',
     errorPath: 'user',
 )]
@@ -23,11 +24,15 @@ class Like
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'likes')]
+    private ?Creation $creation = null;
 
     public function getId(): ?int
     {
@@ -60,5 +65,17 @@ class Like
 
     public function __construct() {
         $this->createdAt = new \DateTimeImmutable();
+    }
+
+    public function getCreation(): ?Creation
+    {
+        return $this->creation;
+    }
+
+    public function setCreation(?Creation $creation): static
+    {
+        $this->creation = $creation;
+
+        return $this;
     }
 }
