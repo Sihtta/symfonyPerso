@@ -2,13 +2,16 @@
 
 namespace App\DataFixtures;
 
-use Faker\Generator;
 use Faker\Factory;
+use Faker\Generator;
+
+use App\Entity\Like;
 use App\Entity\Tool;
 use App\Entity\User;
+use App\Entity\Comment;
 use App\Entity\Category;
 use App\Entity\Creation;
-use App\Entity\Like;
+
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -93,6 +96,17 @@ class AppFixtures extends Fixture
 
             
             $manager->persist($like);
+        }
+
+        // Comment
+        for ($i=0; $i < 50; $i++) { 
+            $comment = new Comment();
+            $comment->setContentComment($this->faker->sentence());
+            $comment->setCreation($creations[mt_rand(0, count($creations) - 1)]);
+            $comment->setUser($users[mt_rand(0, count($users) - 1)]);
+
+            
+            $manager->persist($comment);
         }
 
         $manager->flush();

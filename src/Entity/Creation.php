@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CreationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Tool;
+use App\Entity\Comment;
+use App\Entity\Category;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Repository\CreationRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -52,11 +55,15 @@ class Creation
     #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'creation')]
     private Collection $likes;
 
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'creation')]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->Tool = new ArrayCollection();
         $this->category = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,6 +191,36 @@ class Creation
             // set the owning side to null (unless already changed)
             if ($like->getCreation() === $this) {
                 $like->setCreation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setCreation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getCreation() === $this) {
+                $comment->setCreation(null);
             }
         }
 
