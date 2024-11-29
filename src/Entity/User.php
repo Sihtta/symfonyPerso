@@ -23,30 +23,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\Length(min : 2, max : 180)]
+    #[Assert\Length(min: 2, max: 180)]
     #[Assert\Email()]
     private ?string $email = null;
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min : 2, max : 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $fullName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    #[Assert\Length(min : 2, max : 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $pseudo = null;
 
     #[ORM\Column]
     private array $roles = [];
 
     #[Assert\NotBlank()]
-    private ?string $clearPassword = null;
+    private ?string $plainPassword = null;
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private ?string $password = 'password';
 
     #[ORM\Column]
     #[Assert\NotNull()]
@@ -58,7 +58,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'user')]
     private Collection $comments;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->createdAt = new \DateTimeImmutable();
         $this->likes = new ArrayCollection();
         $this->comments = new ArrayCollection();
@@ -125,22 +126,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-        /**
+    /**
      * Get the value of plainPassword
-     */ 
-    public function getClearPassword()
+     */
+    public function getPlainPassword()
     {
-        return $this->clearPassword;
+        return $this->plainPassword;
     }
 
     /**
      * Set the value of plainPassword
      *
      * @return  self
-     */ 
-    public function setClearPassword($clearPassword)
+     */
+    public function setPlainPassword($plainPassword)
     {
-        $this->clearPassword = $clearPassword;
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
