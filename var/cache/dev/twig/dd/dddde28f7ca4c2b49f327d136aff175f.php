@@ -162,6 +162,6 @@ class __TwigTemplate_d42e853764cf9e71308d94403e613321 extends Template
 \t\t</div>
 
 \t{% endblock %}
-", "pages/security/registration.html.twig", "C:\\Users\\matth\\Projet\\user\\templates\\pages\\security\\registration.html.twig");
+", "pages/security/registration.html.twig", "C:\\Users\\matth\\Projet\\authentication\\templates\\pages\\security\\registration.html.twig");
     }
 }

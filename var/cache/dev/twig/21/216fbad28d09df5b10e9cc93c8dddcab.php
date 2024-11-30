@@ -79,9 +79,9 @@ class __TwigTemplate_cca0836821db1ce14ee908ec94c15f76 extends Template
         // line 22
         yield "\t\t";
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 23
+        // line 29
         yield "\t</body>
-</html>
+</html></body></html>
 ";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -204,6 +204,25 @@ class __TwigTemplate_cca0836821db1ce14ee908ec94c15f76 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
+        // line 23
+        yield "\t\t\t";
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 23, $this->source); })()), "flashes", ["success"], "method", false, false, false, 23));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 24
+            yield "\t\t\t\t<div class=\"alert alert-success mt-4\">
+\t\t\t\t\t";
+            // line 25
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["message"], "html", null, true);
+            yield "
+\t\t\t\t</div>
+\t\t\t";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['message'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 28
+        yield "\t\t";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -226,7 +245,7 @@ class __TwigTemplate_cca0836821db1ce14ee908ec94c15f76 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  195 => 22,  184 => 21,  181 => 20,  168 => 19,  146 => 16,  133 => 12,  120 => 11,  96 => 6,  83 => 23,  80 => 22,  78 => 19,  74 => 17,  72 => 16,  69 => 15,  67 => 11,  62 => 8,  60 => 6,  53 => 1,);
+        return array (  225 => 28,  216 => 25,  213 => 24,  208 => 23,  195 => 22,  184 => 21,  181 => 20,  168 => 19,  146 => 16,  133 => 12,  120 => 11,  96 => 6,  83 => 29,  80 => 22,  78 => 19,  74 => 17,  72 => 16,  69 => 15,  67 => 11,  62 => 8,  60 => 6,  53 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -252,9 +271,15 @@ class __TwigTemplate_cca0836821db1ce14ee908ec94c15f76 extends Template
 \t\t{% block header %}
 \t\t\t{% include \"partials/_header.html.twig\" %}
 \t\t{% endblock %}
-\t\t{% block body %}{% endblock %}
+\t\t{% block body %}
+\t\t\t{% for message in app.flashes('success') %}
+\t\t\t\t<div class=\"alert alert-success mt-4\">
+\t\t\t\t\t{{ message }}
+\t\t\t\t</div>
+\t\t\t{% endfor %}
+\t\t{% endblock %}
 \t</body>
-</html>
-", "base.html.twig", "C:\\Users\\matth\\Projet\\user\\templates\\base.html.twig");
+</html></body></html>
+", "base.html.twig", "C:\\Users\\matth\\Projet\\authentication\\templates\\base.html.twig");
     }
 }

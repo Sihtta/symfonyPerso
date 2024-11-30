@@ -7,7 +7,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserListener
 {
-
     private UserPasswordHasherInterface $hasher;
 
     public function __construct(UserPasswordHasherInterface $hasher)
@@ -26,16 +25,23 @@ class UserListener
     }
 
     /**
-     * Encode les mots de passes d'après "plainPassword"
+     * Encode password based on plain password
      *
      * @param User $user
      * @return void
      */
     public function encodePassword(User $user)
     {
-        if ($user->getPlainPassword() === null) return;
+        if ($user->getPlainPassword() === null) {
+            return;
+        }
 
-        $user->setPassword($this->hasher->hashPassword($user, $user->getPlainPassword()));
+        $user->setPassword(
+            $this->hasher->hashPassword(
+                $user,
+                $user->getPlainPassword()
+            )
+        );
 
         $user->setPlainPassword(null);
     }
