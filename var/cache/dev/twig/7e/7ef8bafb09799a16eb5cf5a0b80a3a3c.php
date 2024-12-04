@@ -130,6 +130,6 @@ class __TwigTemplate_d54fd953124a6d2ed5b09f35b0eae037 extends Template
             Retour à l'accueil
         </a>
     </div>
-{% endblock %}", "admin/dashboard.html.twig", "C:\\xampp\\htdocs\\portfolio\\portfolio\\templates\\admin\\dashboard.html.twig");
+{% endblock %}", "admin/dashboard.html.twig", "C:\\Users\\matth\\Projet\\Portfolio - Dashboard\\templates\\admin\\dashboard.html.twig");
     }
 }

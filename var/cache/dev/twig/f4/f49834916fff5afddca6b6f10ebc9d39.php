@@ -125,6 +125,6 @@ class __TwigTemplate_3ece0423a747014daa04250fd36024eb extends Template
         {{ ea_ux_icon(icon.name, attributes.all) }}
     {% endif %}
 </span>
-", "@EasyAdmin/components/Icon.html.twig", "C:\\xampp\\htdocs\\portfolio\\portfolio\\vendor\\easycorp\\easyadmin-bundle\\templates\\components\\Icon.html.twig");
+", "@EasyAdmin/components/Icon.html.twig", "C:\\Users\\matth\\Projet\\Portfolio - Dashboard\\vendor\\easycorp\\easyadmin-bundle\\templates\\components\\Icon.html.twig");
     }
 }

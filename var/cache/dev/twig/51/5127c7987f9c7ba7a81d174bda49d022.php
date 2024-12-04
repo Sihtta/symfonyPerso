@@ -144,6 +144,6 @@ class __TwigTemplate_6ab49772906f61c05562156337e95079 extends Template
         {% for attr, value in js_asset.htmlAttributes %}{{ attr }}=\"{{ value|e('html_attr') }}\" {% endfor %}></script>
     {% endif %}
 {% endfor %}
-", "@EasyAdmin/includes/_js_assets.html.twig", "C:\\xampp\\htdocs\\portfolio\\portfolio\\vendor\\easycorp\\easyadmin-bundle\\templates\\includes\\_js_assets.html.twig");
+", "@EasyAdmin/includes/_js_assets.html.twig", "C:\\Users\\matth\\Projet\\Portfolio - Dashboard\\vendor\\easycorp\\easyadmin-bundle\\templates\\includes\\_js_assets.html.twig");
     }
 }

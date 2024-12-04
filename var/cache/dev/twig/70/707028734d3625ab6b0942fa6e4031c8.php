@@ -1087,6 +1087,6 @@ class __TwigTemplate_c9b9b074063f400928fca57860c272ac extends Template
         {% endfor %}
     </div>
 {% endblock %}
-", "@TwigComponent/Collector/twig_component.html.twig", "C:\\xampp\\htdocs\\portfolio\\portfolio\\vendor\\symfony\\ux-twig-component\\templates\\Collector\\twig_component.html.twig");
+", "@TwigComponent/Collector/twig_component.html.twig", "C:\\Users\\matth\\Projet\\Portfolio - Dashboard\\vendor\\symfony\\ux-twig-component\\templates\\Collector\\twig_component.html.twig");
     }
 }

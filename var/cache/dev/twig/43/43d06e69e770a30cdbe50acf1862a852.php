@@ -573,6 +573,6 @@ class __TwigTemplate_8b0d929e0ec8f4f690e850c5a3e47c57 extends Template
         </a>
     {% endif %}
 {% endmacro %}
-", "@EasyAdmin/menu.html.twig", "C:\\xampp\\htdocs\\portfolio\\portfolio\\vendor\\easycorp\\easyadmin-bundle\\templates\\menu.html.twig");
+", "@EasyAdmin/menu.html.twig", "C:\\Users\\matth\\Projet\\Portfolio - Dashboard\\vendor\\easycorp\\easyadmin-bundle\\templates\\menu.html.twig");
     }
 }
