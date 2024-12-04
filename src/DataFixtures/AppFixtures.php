@@ -75,6 +75,7 @@ class AppFixtures extends Fixture
             $creation->setDescription(mt_rand(0, 1) === 1 ? $this->faker->sentence() : null);
             $creation->setImage(mt_rand(0, 1) === 1 ? $this->faker->url() : null);
             $creation->setCreatedAt($this->faker->DateTime());
+            $creation->setIsPublic(mt_rand(0, 1) == 1 ? true : false);
 
 
             for ($k = 0; $k <= mt_rand(5, 15); $k++) {

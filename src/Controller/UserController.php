@@ -76,7 +76,7 @@ class UserController extends AbstractController
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
-    #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
+    #[Route('/utilisateur/edition-mot-de-passe/{id}', name: 'user.edit.password', methods: ['GET', 'POST'])]
     public function editPassword(
         User $choosenUser,
         Request $request,

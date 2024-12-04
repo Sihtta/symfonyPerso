@@ -50,6 +50,9 @@ class Creation
     private Collection $category;
 
     #[ORM\Column]
+    private ?bool $isPublic = null;
+
+    #[ORM\Column]
     private ?\DateTime $createdAt = null;
 
     #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'creation')]
@@ -151,6 +154,18 @@ class Creation
     public function removeCategory(Category $category): static
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }
